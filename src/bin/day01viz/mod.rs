@@ -10,5 +10,8 @@ pub mod visuals;
 pub use systems::{load_default_input, run_simulation};
 pub use types::*;
 pub use ui::ui_system;
-pub use visuals::{setup_visuals, update_pointer_visual};
+pub use visuals::{
+    maintain_aspect_ratio, scale_dial_elements, setup_background, setup_visuals,
+    update_background_on_resize, update_pointer_visual,
+};
 

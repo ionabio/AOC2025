@@ -67,3 +67,19 @@ pub struct UiState {
 #[derive(bevy::prelude::Component)]
 pub struct PointerRoot;
 
+#[derive(bevy::prelude::Component)]
+pub struct BackgroundSprite;
+
+#[derive(bevy::prelude::Component)]
+pub struct DialElement;
+
+#[derive(bevy::prelude::Component)]
+pub struct TickElement {
+    pub angle: f32,
+}
+
+#[derive(bevy::prelude::Resource)]
+pub struct WindowSizeTracker {
+    pub last_height: f32,
+}
+
