@@ -1,11 +1,11 @@
-mod viz;
+mod day01viz;
 
 use bevy::prelude::*;
 use bevy::window::{PresentMode, WindowResolution};
 use bevy_egui::EguiPlugin;
 use bevy_egui::EguiPrimaryContextPass;
 
-use viz::{
+use day01viz::{
     load_default_input, run_simulation, setup_visuals, update_pointer_visual, ui_system,
     DialSimulation, PlaybackResource, UiState,
 };
