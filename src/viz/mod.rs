@@ -59,7 +59,7 @@ pub fn playback_controls_ui(ui: &mut egui::Ui, state: &mut PlaybackState) -> Pla
     });
 
     ui.add(
-        egui::Slider::new(&mut state.speed, 0.1..=5.0)
+        egui::Slider::new(&mut state.speed, 0.1..=500.0)
             .logarithmic(true)
             .text("Speed (steps/sec)"),
     );
