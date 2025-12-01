@@ -2,14 +2,16 @@ use std::fs;
 use std::path::Path;
 use std::time::Instant;
 
+pub mod viz;
+
 /// A scoped timer that measures and prints execution time
-/// 
+///
 /// The timer starts when created and prints the elapsed time when dropped.
-/// 
+///
 /// # Example
 /// ```
 /// use aoc2025::Timer;
-/// 
+///
 /// fn some_function() {
 ///     let _timer = Timer::new("some_function");
 ///     // ... your code here ...
@@ -38,11 +40,11 @@ impl Drop for Timer {
 }
 
 /// Macro to easily create a scoped timer
-/// 
+///
 /// # Example
 /// ```
 /// use aoc2025::time_it;
-/// 
+///
 /// fn some_function() {
 ///     time_it!("some_function");
 ///     // ... your code here ...
@@ -56,13 +58,13 @@ macro_rules! time_it {
 }
 
 /// Read the input file for a given day
-/// 
+///
 /// # Arguments
 /// * `day` - The day number (e.g., 1 for day01.txt)
-/// 
+///
 /// # Returns
 /// The contents of the input file as a String
-/// 
+///
 /// # Panics
 /// Panics if the file cannot be read
 pub fn read_input(day: u8) -> String {
@@ -72,13 +74,13 @@ pub fn read_input(day: u8) -> String {
 }
 
 /// Read the input file from a custom path
-/// 
+///
 /// # Arguments
 /// * `path` - The path to the input file
-/// 
+///
 /// # Returns
 /// The contents of the input file as a String
-/// 
+///
 /// # Panics
 /// Panics if the file cannot be read
 pub fn read_input_from_path<P: AsRef<Path>>(path: P) -> String {
@@ -115,4 +117,3 @@ mod tests {
         assert_eq!(lines, vec!["line1", "line2", "", "line3"]);
     }
 }
-

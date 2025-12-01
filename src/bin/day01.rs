@@ -97,7 +97,7 @@ fn part2_fast(input: &str, verbose: bool) -> i32 {
     let steps = parse_input(input);
 
     for step in steps {
-        let distance = step.abs();  
+        let distance = step.abs();
         let count = if step > 0 {
             // Moving right: count = floor((current + distance) / dials)
             (current_position + distance) / number_of_dials
@@ -113,7 +113,7 @@ fn part2_fast(input: &str, verbose: bool) -> i32 {
                 1 + (distance - current_position) / number_of_dials
             }
         };
-        
+
         // Update position
         current_position = (current_position + step).rem_euclid(number_of_dials);
         number_of_zeros += count;
@@ -180,6 +180,9 @@ L82
     #[test]
     fn test_part2_equivalence() {
         // Verify that part2_fast produces the same result as part2
-        assert_eq!(part2_fast(EXAMPLE_INPUT, false), part2(EXAMPLE_INPUT, false));
+        assert_eq!(
+            part2_fast(EXAMPLE_INPUT, false),
+            part2(EXAMPLE_INPUT, false)
+        );
     }
 }

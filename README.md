@@ -4,7 +4,7 @@ This repository contains my solutions for [Advent of Code 2025](https://adventof
 
 ## Project Structure
 
-```
+```text
 AOC2025/
 ├── Cargo.toml          # Rust project configuration
 ├── Input/              # Puzzle input files (not committed to git)
@@ -51,6 +51,22 @@ To run all tests:
 cargo test
 ```
 
+### Visualization binaries
+
+Some days also ship with an optional visualization built with [Bevy](https://bevyengine.org/) + [bevy_egui](https://crates.io/crates/bevy_egui) and native file dialogs via [`rfd`](https://crates.io/crates/rfd). Visualization binaries live next to the normal solutions using the `dayXX_viz.rs` naming convention and share helpers from `src/viz/`.
+
+Current visualizations:
+
+- **Day 01 (`day01_viz`)** – animates the 100-position dial, shows zero hits, and exposes playback controls in an egui panel. It loads `Input/day01.txt` by default, and the *Load input...* button opens any other file via a native dialog.
+
+Run a visualization the same way as a standard solution:
+
+```bash
+cargo run --bin day01_viz
+```
+
+The UI provides play/pause, step, reset, speed adjustments, and a rolling event log so you can inspect your algorithm while it runs.
+
 ### Adding a new day
 
 1. Copy `src/bin/day01.rs` to `src/bin/dayXX.rs` (replace XX with the day number, e.g., `day05.rs`)
@@ -82,7 +98,6 @@ The `src/lib.rs` module provides helpful utilities:
 
 - Puzzle inputs are personal and should not be committed to version control (they're in `.gitignore`)
 - Each day is a separate binary for faster compilation and easier testing
+- Visualization helpers live in `src/viz/` and can be reused by future `dayXX_viz` binaries
 - Tests use the example inputs provided in each day's puzzle description
 - Made with help from Cursor
-
-
