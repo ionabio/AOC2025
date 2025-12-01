@@ -25,10 +25,7 @@ fn part1(input: &str, verbose: bool) -> i32 {
     let steps = parse_input(input);
     for step in steps {
         current_position += step;
-        current_position = current_position % number_of_dials;
-        if current_position < 0 {
-            current_position += number_of_dials;
-        }
+        current_position = current_position.rem_euclid(number_of_dials);
         if current_position == 0 {
             number_of_zeros += 1;
         }
@@ -100,11 +97,10 @@ fn part2_fast(input: &str, verbose: bool) -> i32 {
     let steps = parse_input(input);
 
     for step in steps {
-        let distance = step.abs();
-        
+        let distance = step.abs();  
         let count = if step > 0 {
-            // Moving right: count = floor((current + distance) / dials) - floor(current / dials)
-            (current_position + distance) / number_of_dials - current_position / number_of_dials
+            // Moving right: count = floor((current + distance) / dials)
+            (current_position + distance) / number_of_dials
         } else {
             if current_position == 0 {
                 // Special case: starting at 0, we hit it every full rotation
