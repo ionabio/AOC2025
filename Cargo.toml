@@ -1,0 +1,13 @@
+[package]
+name = "aoc2025"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+
+[dev-dependencies]
+
+[[bin]]
+name = "day01"
+path = "src/bin/day01.rs"
+
