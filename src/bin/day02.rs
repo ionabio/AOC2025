@@ -59,6 +59,7 @@ fn generate_invalid_ids_part2(ranges: &[(i64, i64)]) -> Vec<i64> {
     let mut invalid_ids = HashSet::new();
     
     for &(start, end) in ranges {
+        // num of digits of start and end
         let start_digits = if start == 0 { 1 } else { (start as f64).log10().floor() as usize + 1 };
         let end_digits = (end as f64).log10().floor() as usize + 1;
         
@@ -66,6 +67,7 @@ fn generate_invalid_ids_part2(ranges: &[(i64, i64)]) -> Vec<i64> {
         for num_digits in start_digits..=end_digits {
             // For each pattern length that divides num_digits
             for pattern_len in 1..=num_digits/2 {
+                // pattern length should fit in the whole number of digits
                 if num_digits % pattern_len == 0 {
                     let reps = num_digits / pattern_len;
                     
@@ -77,10 +79,12 @@ fn generate_invalid_ids_part2(ranges: &[(i64, i64)]) -> Vec<i64> {
                     }
                     
                     // Range of valid patterns (no leading zeros)
+                    // e.g., for 2-digit: 10-99
                     let pattern_min = if pattern_len == 1 { 1 } else { 10_i64.pow((pattern_len - 1) as u32) };
                     let pattern_max = 10_i64.pow(pattern_len as u32) - 1;
                     
                     for pattern in pattern_min..=pattern_max {
+                        // e.g., for 3 reps of 2-digit: pattern * (10000 + 100 + 1) = pattern * 10101
                         let id = pattern * multiplier;
                         if id >= start && id <= end {
                             invalid_ids.insert(id);
