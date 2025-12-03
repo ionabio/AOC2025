@@ -2,6 +2,7 @@ use std::fs;
 use std::path::Path;
 use std::time::Instant;
 
+#[cfg(feature = "viz")]
 pub mod viz;
 
 /// A scoped timer that measures and prints execution time
