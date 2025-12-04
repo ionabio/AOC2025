@@ -5,6 +5,9 @@ Cargo.lock
 # Advent of Code inputs (personal puzzle inputs should not be committed)
 Input/*.txt
 
+# Windows Alternate Data Streams (Zone.Identifier from downloaded files)
+**/*:Zone.Identifier
+
 # IDE and editor files
 .vscode/
 .idea/
