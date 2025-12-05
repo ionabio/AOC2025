@@ -34,9 +34,33 @@ fn parse_input(input: &str) -> (Vec<Range>, Vec<i64>) {
     (ranges, numbers)
 }
 
+
+fn merge_ranges(ranges: &Vec<Range>) -> Vec<Range> {
+    let mut merged: Vec<Range> = Vec::new();
+    if !ranges.is_empty() {
+        // Sort by start
+        let mut sorted = ranges.clone();
+        sorted.sort_by_key(|r| r.start);
+
+        let mut current = sorted[0].clone();
+        for r in sorted.iter().skip(1) {
+            if r.start <= current.end + 1 {
+                // Merge ranges (they overlap or touch)
+                current.end = current.end.max(r.end);
+            } else {
+                merged.push(current);
+                current = r.clone();
+            }
+        }
+        merged.push(current);
+    }
+    merged
+}
+
 fn part1(input: &str, verbose: bool) -> i64 {
     let _timer = Timer::new("Part 1");
     let (ranges, numbers) = parse_input(input);
+    //let merged = merge_ranges(&ranges);
     let mut total = 0;
     for number in &numbers {
         for range in &ranges {
@@ -58,25 +82,7 @@ fn part1(input: &str, verbose: bool) -> i64 {
 fn part2(input: &str) -> i64 {
     let _timer = Timer::new("Part 2");
     let (ranges, _numbers) = parse_input(input);
-    // Merge overlapping or contiguous ranges
-    let mut merged: Vec<Range> = Vec::new();
-    if !ranges.is_empty() {
-        // Sort by start
-        let mut sorted = ranges.clone();
-        sorted.sort_by_key(|r| r.start);
-
-        let mut current = sorted[0].clone();
-        for r in sorted.iter().skip(1) {
-            if r.start <= current.end + 1 {
-                // Merge ranges (they overlap or touch)
-                current.end = current.end.max(r.end);
-            } else {
-                merged.push(current);
-                current = r.clone();
-            }
-        }
-        merged.push(current);
-    }
+    let merged = merge_ranges(&ranges);
 
     let mut total: i64 = 0;
     for r in &merged {
